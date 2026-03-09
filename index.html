@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Mowana Safe Space — Volunteer Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:            #f0f8ff;
+      --surface:       #ffffff;
+      --ink:           #0d1b2a;
+      --muted:         #5a7a9a;
+      --border:        #c8dff0;
+      --primary:       #5bb8e8;
+      --primary-dark:  #2a8abf;
+      --primary-light: #dff1fb;
+      --primary-deep:  #1a6fa3;
+
+      --leaf-green:    #2e8b57;
+      --leaf-green-bg: #e6f4ec;
+      --leaf-amber:    #b07820;
+      --leaf-amber-bg: #fdf3dc;
+      --leaf-teal:     #1a7a8a;
+      --leaf-teal-bg:  #dff2f5;
+      --leaf-navy:     #1a3f6e;
+      --leaf-navy-bg:  #e0e9f5;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #5bb8e8;
+      padding: 0 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      pointer-events: none;
+    }
+    .header-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      padding-top: 1.8rem;
+    }
+    .logo-badge {
+      flex-shrink: 0;
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: #5bb8e8;
+      border: 3px solid rgba(255,255,255,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .logo-wordmark {
+      font-family: 'Arial Black', 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: #000;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .logo-tagline {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.28rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+      margin-top: 1px;
+      white-space: nowrap;
+    }
+    .org-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      color: #000;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+    .org-sub {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+      color: #fff;
+      margin-top: 0.2rem;
+    }
+    .page-desc {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      margin-top: 0.15rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .wave { position: absolute; bottom: -1px; left: 0; right: 0; height: 42px; }
+
+    /* ── Controls ── */
+    .controls { max-width: 820px; margin: 2rem auto 0; padding: 0 1.5rem; }
+    .search-wrap { position: relative; margin-bottom: 1rem; }
+    .s-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    #search {
+      width: 100%; padding: 0.85rem 1rem 0.85rem 2.9rem;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      background: var(--surface); font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem; color: var(--ink); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(91,184,232,0.08);
+    }
+    #search:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+    #search::placeholder { color: var(--muted); }
+
+    .filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 0.38rem 1rem; border-radius: 99px;
+      border: 1.5px solid var(--border); background: var(--surface);
+      font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 600;
+      color: var(--muted); cursor: pointer; transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--primary-dark); color: var(--primary-dark); }
+    .filter-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    /* ── Main ── */
+    main { max-width: 820px; margin: 1.8rem auto 4rem; padding: 0 1.5rem; }
+
+    .section { margin-bottom: 2.5rem; animation: fadeUp 0.4s ease both; }
+    .section:nth-child(1){animation-delay:0.05s}
+    .section:nth-child(2){animation-delay:0.1s}
+    .section:nth-child(3){animation-delay:0.15s}
+    .section:nth-child(4){animation-delay:0.2s}
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(12px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .section-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem; padding-bottom: 0.65rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; flex-shrink: 0;
+    }
+    .icon-contact  { background: var(--primary-light); }
+    .icon-policy   { background: var(--leaf-navy-bg); }
+    .icon-form     { background: var(--leaf-teal-bg); }
+    .icon-resource { background: var(--leaf-green-bg); }
+
+    .section-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); }
+    .section-count { margin-left: auto; font-size: 0.76rem; color: var(--muted); font-weight: 500; }
+
+    .file-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .file-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 1rem 1.1rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: inherit; cursor: pointer;
+      transition: border-color 0.18s, box-shadow 0.18s, transform 0.15s;
+      box-shadow: 0 1px 3px rgba(91,184,232,0.06);
+    }
+    .file-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 18px rgba(91,184,232,0.18);
+      transform: translateY(-2px);
+    }
+    .file-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .file-icon.pdf { background: var(--primary-light); }
+    .file-icon.xls { background: var(--leaf-green-bg); }
+
+    .file-meta { flex: 1; min-width: 0; }
+    .file-name { font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .file-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.18rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .file-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; flex-shrink: 0; }
+    .tag { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 99px; letter-spacing: 0.03em; }
+    .tag-policy   { background: var(--leaf-navy-bg);  color: var(--leaf-navy); }
+    .tag-form     { background: var(--leaf-teal-bg);  color: var(--leaf-teal); }
+    .tag-resource { background: var(--leaf-green-bg); color: var(--leaf-green); }
+    .tag-contact  { background: var(--primary-light); color: var(--primary-dark); }
+    .file-date { font-size: 0.72rem; color: var(--muted); }
+
+    .dl-btn {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-dark); flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .file-card:hover .dl-btn { background: var(--primary); color: #fff; }
+
+    .empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9rem; }
+
+    footer {
+      text-align: center; padding: 1.5rem 1rem;
+      font-size: 0.78rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--primary-dark); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-badge">
+      <span class="logo-wordmark">MOWANA</span>
+      <span class="logo-tagline">your local safe space</span>
+    </div>
+    <div class="header-text">
+      <div class="org-name">Mowana</div>
+      <div class="org-sub">your local safe space</div>
+      <div class="page-desc">Volunteer Resources &amp; Policies</div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 42" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,24 C360,44 1080,4 1440,24 L1440,42 L0,42 Z" fill="#f0f8ff"/>
+  </svg>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg class="s-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="search" placeholder="Search resources…" autocomplete="off"/>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="contact">Contacts</button>
+    <button class="filter-btn" data-filter="policy">Policies</button>
+    <button class="filter-btn" data-filter="form">Forms</button>
+    <button class="filter-btn" data-filter="resource">Resources</button>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ══ 1. Contacts & Escalation ══
+       To add a contact file: copy an <a class="file-card"> block below,
+       update href="files/your-file.pdf", data-name, file-name, file-desc, file-date -->
+  <div class="section" data-section="Contacts">
+    <div class="section-header">
+      <div class="section-icon icon-contact">📞</div>
+      <span class="section-title">Contacts &amp; Escalation</span>
+      <span class="section-count"></span>
+    </div>
+    <div class="file-list">
+
+      <a class="file-card" href="files/key-contacts.pdf" target="_blank" data-tags="contact" data-name="Key Contacts List">
+        <div class="file-icon pdf">📄</div>
+        <div class="file-meta">
+          <div class="file-name">Key Contacts List</div>
+          <div class="file-desc">Coordinator, manager, and emergency contact numbers</div>
+        </div>
+        <div class="file-right">
+          <span class="tag tag-contact">Contact</span>
+          <span class="file-date">Updated Feb 2025</span>
+        </div>
+        <div class="dl-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ 2. Policies ══ -->
+  <div class="section" data-section="Policies">
+    <div class="section-header">
+      <div class="section-icon icon-policy">📋</div>
+      <span class="section-title">Policies</span>
+      <span class="section-count"></span>
+    </div>
+    <div class="file-list">
+
+      <a class="file-card" href="files/volunteer-code-of-conduct.pdf" target="_blank" data-tags="policy" data-name="Volunteer Code of Conduct">
+        <div class="file-icon pdf">📄</div>
+        <div class="file-meta">
+          <div class="file-name">Volunteer Code of Conduct</div>
+          <div class="file-desc">Expected behaviours and obligations for all volunteers</div>
+        </div>
+        <div class="file-right">
+          <span class="tag tag-policy">Policy</span>
+          <span class="file-date">Updated Jan 2025</span>
+        </div>
+        <div class="dl-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </a>
+
+      <a class="file-card" href="files/privacy-policy.pdf" target="_blank" data-tags="policy" data-name="Privacy Policy">
+        <div class="file-icon pdf">📄</div>
+        <div class="file-meta">
+          <div class="file-name">Privacy Policy</div>
+          <div class="file-desc">How we collect and handle volunteer and client information</div>
+        </div>
+        <div class="file-right">
+          <span class="tag tag-policy">Policy</span>
+          <span class="file-date">Updated Mar 2024</span>
+        </div>
+        <div class="dl-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </a>
+
+      <a class="file-card" href="files/whs-policy.pdf" target="_blank" data-tags="policy" data-name="Work Health Safety Policy">
+        <div class="file-icon pdf">📄</div>
+        <div class="file-meta">
+          <div class="file-name">Work Health &amp; Safety Policy</div>
+          <div class="file-desc">WHS obligations, incident reporting, and safe practices</div>
+        </div>
+        <div class="file-right">
+          <span class="tag tag-policy">Policy</span>
+          <span class="file-date">Updated Nov 2024</span>
+        </div>
+        <div class="dl-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ 3. Forms ══ -->
+  <div class="section" data-section="Forms">
+    <div class="section-header">
+      <div class="section-icon icon-form">📝</div>
+      <span class="section-title">Forms</span>
+      <span class="section-count"></span>
+    </div>
+    <div class="file-list">
+
+      <a class="file-card" href="files/incident-report-form.pdf" target="_blank" data-tags="form" data-name="Incident Report Form">
+        <div class="file-icon pdf">📄</div>
+        <div class="file-meta">
+          <div class="file-name">Incident Report Form</div>
+          <div class="file-desc">Complete within 24hrs of any incident or near-miss</div>
+        </div>
+        <div class="file-right">
+          <span class="tag tag-form">Form</span>
+          <span class="file-date">Updated Feb 2025</span>
+        </div>
+        <div class="dl-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </a>
+
+      <a class="file-card" href="files/expense-claim-form.xlsx" target="_blank" data-tags="form" data-name="Expense Claim Form">
+        <div class="file-icon xls">📊</div>
+        <div class="file-meta">
+          <div class="file-name">Expense Claim Form</div>
+          <div class="file-desc">For reimbursement of approved out-of-pocket expenses</div>
+        </div>
+        <div class="file-right">
+          <span class="tag tag-form">Form</span>
+          <span class="file-date">Updated Jun 2024</span>
+        </div>
+        <div class="dl-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ 4. Resources ══ -->
+  <div class="section" data-section="Resources">
+    <div class="section-header">
+      <div class="section-icon icon-resource">📚</div>
+      <span class="section-title">Resources</span>
+      <span class="section-count"></span>
+    </div>
+    <div class="file-list">
+
+      <a class="file-card" href="files/volunteer-handbook.pdf" target="_blank" data-tags="resource" data-name="Volunteer Handbook">
+        <div class="file-icon pdf">📄</div>
+        <div class="file-meta">
+          <div class="file-name">Volunteer Handbook</div>
+          <div class="file-desc">Everything you need to know as a Mowana Peer Care Companion</div>
+        </div>
+        <div class="file-right">
+          <span class="tag tag-resource">Resource</span>
+          <span class="file-date">Updated Jan 2025</span>
+        </div>
+        <div class="dl-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="empty hidden" id="empty-state">No resources match your search.</div>
+</main>
+
+<footer>
+  For Mowana volunteers only &nbsp;·&nbsp; Not for public distribution &nbsp;·&nbsp;
+  <a href="https://mowana.org.au" target="_blank">mowana.org.au</a>
+</footer>
+
+<script>
+  const searchInput = document.getElementById('search');
+  const filterBtns  = document.querySelectorAll('.filter-btn');
+  const cards       = document.querySelectorAll('.file-card');
+  const sections    = document.querySelectorAll('.section');
+  const emptyState  = document.getElementById('empty-state');
+  let activeFilter  = 'all';
+
+  function update() {
+    const q = searchInput.value.toLowerCase().trim();
+    let anyVisible = false;
+    cards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      const name = (card.dataset.name || '').toLowerCase();
+      const desc = (card.querySelector('.file-desc')?.textContent || '').toLowerCase();
+      const matchFilter = activeFilter === 'all' || tags.split(' ').includes(activeFilter);
+      const matchSearch = !q || name.includes(q) || desc.includes(q) || tags.includes(q);
+      if (matchFilter && matchSearch) { card.classList.remove('hidden'); anyVisible = true; }
+      else card.classList.add('hidden');
+    });
+    sections.forEach(section => {
+      const visible = [...section.querySelectorAll('.file-card')].filter(c => !c.classList.contains('hidden'));
+      section.classList.toggle('hidden', visible.length === 0);
+      const countEl = section.querySelector('.section-count');
+      if (countEl) countEl.textContent = visible.length ? `${visible.length} item${visible.length !== 1 ? 's' : ''}` : '';
+    });
+    emptyState.classList.toggle('hidden', anyVisible);
+  }
+
+  searchInput.addEventListener('input', update);
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      update();
+    });
+  });
+  update();
+</script>
+</body>
+</html>
